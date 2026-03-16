@@ -108,6 +108,59 @@ Use the `mcp-atlassian` MCP server for all Atlassian operations.
 | `jira_get_service_desk_queues` | List Service Desk queues |
 | `jira_get_queue_issues` | Get issues in a queue |
 
+## Story Points (customfield_10027)
+
+MCP `jira_search` / `jira_get_issue` **tidak** mengekspos nilai custom field di response-nya. Untuk membaca Story Points, gunakan **Jira REST API v3** langsung.
+
+> ⚠️ Jira REST API v2 (`/rest/api/2/search`) sudah di-remove. Selalu gunakan v3.
+
+### Field mapping
+
+| Custom Field ID | Nama | Tipe |
+|---|---|---|
+| `customfield_10027` | Story Points | Number (float) |
+
+### Command template (curl + python)
+
+```bash
+curl -s -u "$JIRA_USERNAME:$JIRA_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -X POST \
+  -d '{"jql":"project=DPT AND sprint in openSprints()","fields":["summary","status","assignee","customfield_10027"],"maxResults":50}' \
+  "https://finacceljira.atlassian.net/rest/api/3/search/jql" \
+  | python3 -c "
+import json, sys
+data = json.load(sys.stdin)
+issues = data.get('issues', [])
+sp_by_status = {}
+for i in issues:
+    sp = i['fields'].get('customfield_10027') or 0
+    status = i['fields']['status']['name']
+    sp_by_status[status] = sp_by_status.get(status, 0) + sp
+print('SP per status:', json.dumps(sp_by_status, indent=2))
+print('Total SP:', sum(sp_by_status.values()))
+"
+```
+
+### JQL patterns
+
+```
+# Sprint aktif
+project = DPT AND sprint in openSprints()
+
+# Filter tiket yang punya SP
+project = DPT AND sprint in openSprints() AND "Story Points" is not EMPTY
+
+# Filter by SP minimum
+project = DPT AND sprint in openSprints() AND cf[10027] >= 3
+```
+
+### Kredensial (dari .vscode/mcp.json)
+
+- **URL**: `https://finacceljira.atlassian.net`
+- **Username**: `rushan.faizal@finaccel.co`
+- **Token**: gunakan `JIRA_API_TOKEN` dari `.vscode/mcp.json`
+
 ## Example prompts
 
 - "Cek tiket Jira yang statusnya In Progress di project PROJ"
