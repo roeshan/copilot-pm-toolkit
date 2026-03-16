@@ -1,0 +1,12 @@
+# Credentials & Secrets — NEVER push these
+.vscode/mcp.json
+.env
+.env.local
+.env.*
+!.env.example
+
+# macOS
+.DS_Store
+
+# VS Code user-specific settings (optional — remove if you want to share settings.json)
+# .vscode/settings.json

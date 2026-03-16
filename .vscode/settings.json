@@ -1,0 +1,16 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^python3 /tmp/analyze_dpt\\.py$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^cd /tmp && python3 analyze_dpt\\.py$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^python3 -c \"\nimport json\nfor i, f in enumerate\\(\\[\n    '/Users/rushan\\.faizal/Library/Application Support/Code/User/workspaceStorage/064af3e58ca239c439aa0f943fc055fb/GitHub\\.copilot-chat/chat-session-resources/b61d1b39-6030-4ac0-8dbe-9b114a646e14/toolu_bdrk_01E4QqKtj77KKJ9QwYwv6RWo__vscode-1773668679263/content\\.json',\n    '/Users/rushan\\.faizal/Library/Application Support/Code/User/workspaceStorage/064af3e58ca239c439aa0f943fc055fb/GitHub\\.copilot-chat/chat-session-resources/b61d1b39-6030-4ac0-8dbe-9b114a646e14/toolu_bdrk_01LzuVKWBZar1sV5qMskNe7V__vscode-1773668679264/content\\.json',\n    '/Users/rushan\\.faizal/Library/Application Support/Code/User/workspaceStorage/064af3e58ca239c439aa0f943fc055fb/GitHub\\.copilot-chat/chat-session-resources/b61d1b39-6030-4ac0-8dbe-9b114a646e14/toolu_bdrk_01FLHGr25oLx6TXsTMNm6sHt__vscode-1773668679265/content\\.json',\n\\]\\):\n    with open\\(f\\) as fp:\n        data = json\\.loads\\(json\\.load\\(fp\\)\\['result'\\]\\)\n    issues = data\\['issues'\\]\n    print\\(f'Batch \\{i\\+1\\}: start_at=\\{data\\[\\\\\"start_at\\\\\"\\]\\}, count=\\{len\\(issues\\)\\}, first=\\{issues\\[0\\]\\[\\\\\"key\\\\\"\\]\\}, last=\\{issues\\[-1\\]\\[\\\\\"key\\\\\"\\]\\}'\\)\n\"\n$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
