@@ -42,12 +42,22 @@ Ketika user meminta:
 6. **Publish**: Upload ke Confluence (optional, after user approval)
 
 ### PRD Standards:
-- **Naming Convention**: `[PREFIX] - [PROJECT] - [DESCRIPTION] - [DATE]`
-  - Example: `[KID] PRD - 202604 - Pegasus - Buy Again Model`
-- **Metadata**: Always include creation date, owner, reviewers, Jira epic, priority, status
-- **Sections**: Background, Business Impact, Timeline, Tasks & AC, Dependencies, Risks, References
-- **Quality**: Specific metrics, clear acceptance criteria, realistic timeline, identified risks
-- **Format**: Confluence markdown dengan tables, links, dan proper formatting
+- **Template**: Follow Template v2 structure (https://finacceljira.atlassian.net/wiki/spaces/DS/pages/5430511189)
+- **Naming Convention**: `[Tribe] – [Product Name] – [Feature Title] – [YYYYMMDD]`
+  - Example: `KID – Pegasus – Buy Again Model – 20260401`
+- **Metadata**: Include creation date, owners, reviewers, Jira epic, GTM link, tech doc, priority, status
+- **Core Sections**: 
+  - 🎯 Objective/Problem Statement (Background, Problem, Goals, Non-Goals)
+  - 👥 Target Personas/Stakeholders
+  - 📊 Success Metrics/Business Impact
+  - 🤔 Assumptions (with validation plans)
+  - 👥 Dependencies (cross-team)
+  - 🌟 Milestones (with Jira tickets)
+  - 📝 Requirements (Scope, Prerequisites, Feature Requirements with AC)
+  - ❓ FAQ & Open Questions
+  - 📝 References & API Contract
+- **Quality**: Specific metrics with baselines, clear acceptance criteria, squad scope defined, data tracking specified
+- **Format**: Confluence markdown dengan tables, emoji headers, links, dan proper formatting
 
 ### Integration Points:
 - Link PRD dengan Jira Epic/tickets

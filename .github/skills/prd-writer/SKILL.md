@@ -68,61 +68,112 @@ d. Ask clarifying questions
 
 **Objective**: Define PRD outline berdasarkan type & context
 
-**Common Structures**:
+**Standard PRD Structure** (Template v2):
 
-**A. Standard Feature PRD** (Pegasus-style):
+Based on official template: https://finacceljira.atlassian.net/wiki/spaces/DS/pages/5430511189
+
 ```markdown
-- Metadata table (Creation date, Jira epic, owners, status)
-- Background | Context
-  - Current state
-  - Problem statement
-  - Proposed solution
-- Business Impact | Goals
-  - Success metrics
-  - Supporting metrics
-- Technical Approach (optional)
-- Timeline and Milestones
-- Task and Acceptance Criteria
-- Dependencies
-- Out of Scope
-- Open Questions
-- References
-- Appendix
+# PRD – [Tribe] – [Product Name] – [Feature Title]
+
+## Metadata Table
+- Creation Date, Jira Epic, Target Release
+- Doc Owner, Reviewers, Status
+- GTM Link, Tech Doc
+- DS, MLE, QA, Product contacts
+- Priority (P0-P3)
+
+## 🎯 Objective / Problem Statement
+- Background (current state/context)
+- Problem Statement (user-focused, clear)
+- Goals (what success looks like)
+- Non-Goals / Out of Scope (high level)
+
+## 👥 Target Personas / Market / Stakeholders
+- Primary & Secondary Personas
+- Internal Stakeholders (Ops, CS, Sales)
+- Profile, needs, key behaviors for each
+
+## 📊 Success Metrics / Business Impact
+- Goal | Metric | Current Baseline | Target | Measurement Method
+- Both primary and supporting metrics
+- Clear data sources (Analytics, logs, surveys)
+
+## 🤔 Assumptions
+- What must be true for solution to work
+- User, Tech, Business assumptions
+- Validation plan for each
+
+## 👥 Dependencies
+- Task/Deliverable | Owner (Squad/Team) | Due Date | Status | Notes
+- Cross-team dependencies clearly identified
+
+## 🌟 Milestones
+- M1: Discovery/Alignment
+- M2: Design Complete
+- M3: Dev Complete
+- M4: Launch/GA
+- Each with: Description, Target Date, Owner, Status, Jira Ticket
+
+## 📝 Requirements
+### 1. Scope Overview
+- In Scope (feature areas)
+- Out of Scope (for this release)
+
+### 2. Prerequisites
+- Infra/BFF/Platform requirements
+- Data/Events requirements
+- Related docs
+
+### 3. Feature Requirements
+For each feature:
+- Summary
+- User Story table (Requirement | User Story | Notes | Visuals)
+- High Level Flow
+- Data & Feature Definition (for ML/DS projects)
+- Acceptance Criteria:
+  * UX Flow & UI Behavior
+  * Logic & Business Rules
+  * Data Tracking (events, properties, A/B test)
+  * Squad Scope (FE/BE/DS responsibilities)
+- Experiment Design (if A/B testing needed)
+
+## ❓ FAQ
+- Why this approach vs alternatives?
+- How does this interact with existing features?
+- What happens if this fails?
+
+## ⚠️ Detailed Out of Scope
+- Product/UX exclusions
+- Tech exclusions
+- Reasons & future considerations
+
+## ❓ Open Questions
+- Question | Owner | Answer | Date Answered
+- Track unresolved items with "TBD"
+
+## 📝 Reference
+- PRDs from other teams
+- Analysis documents
+- Research & benchmarks
+
+## 📝 API Contract
+- Technical specifications
+- Request/Response formats
+- Integration details
 ```
 
-**B. Experiment PRD** (ODS-style):
-```markdown
-- Metadata table
-- Background | Context
-  - Current performance
-  - Hypothesis
-- Experiment Goals
-- Experiment Design
-  - Control vs Treatment
-  - User segmentation
-  - Duration
-- Success Metrics
-- Task and Acceptance Criteria
-- Dependencies
-- References
-```
+**Variant Structures**:
 
-**C. Model/ML PRD**:
-```markdown
-- Metadata table
-- Background | Context
-- Business Impact | Goals
-- Technical Approach
-  - Model architecture
-  - Features
-  - Training & deployment
-- Model Output Specification
-- A/B Testing Strategy
-- Timeline and Milestones
-- Task and Acceptance Criteria
-- Risks & Mitigation
-- References
-```
+**For Experiments/A/B Tests**: 
+- Emphasize "Experiment Design" section in Feature Requirements
+- Add detailed control vs treatment comparison
+- Include statistical significance requirements
+
+**For ML/DS Projects**: 
+- Add "Data & Feature Definition" section
+- Include "Model Output Specification"
+- Detail training/deployment approach
+- Add model monitoring requirements
 
 ---
 
@@ -132,61 +183,166 @@ d. Ask clarifying questions
 
 **Guidelines**:
 
-**Metadata Table**:
+**Metadata Table** (Template v2):
 ```markdown
 | Field | Value |
 |-------|-------|
-| Creation Date | [Current date] |
-| Jira Epic | [Link or TBD] |
-| Target release | [Quarter/Month Year] |
-| Doc Owner | @[Name] |
-| Doc Reviewer | [TBD or Name] |
-| MLE/Engineer | [TBD or Name] |
-| QA | [TBD or Name] |
-| DS | [TBD or Name] |
-| Priority | P0/P1/P2 |
-| Document status | DRAFT/IN REVIEW/APPROVED |
-| Stakeholder | @[Name] |
+| **Creation Date** | [YYYY-MM-DD] |
+| **Jira Epic** | [Link to epic or TBD] |
+| **Target release** | [Q# YYYY or specific date] |
+| **Doc Owner** | [Name / Squad] |
+| **Doc Reviewer(s)** | [Name(s)] |
+| **Document status** | DRAFT / REVIEW / APPROVED |
+| **GTM Link** | [Link to GTM/launch plan or TBD] |
+| **Tech Doc** | [Link to tech/architecture doc or TBD] |
+| **DS** | [Primary DS contact or TBD] |
+| **MLE** | [Primary MLE contact or TBD] |
+| **QA** | [Primary QA contact or TBD] |
+| **Product** | [PM / PO name] |
+| **Priority** | P0 / P1 / P2 / P3 |
 ```
 
 **Writing Style**:
 - **Professional yet collaborative** tone
 - **Data-driven**: Include metrics, dashboards, references
 - **Specific**: Avoid vague terms like "improve performance" → use "reduce latency by 30%"
-- **Actionable**: Clear acceptance criteria
+- **User-focused**: Start with user problem, not technical solution
+- **Actionable**: Clear acceptance criteria with measurable outcomes
 - **Complete**: Address all sections, use "TBD" if unknown
 
-**Section Tips**:
+**Section-by-Section Tips**:
 
-1. **Background**: 
-   - Current state with metrics
-   - Clear problem statement
-   - Why now? (urgency/timing)
+**1. 🎯 Objective / Problem Statement**:
+```markdown
+### Background:
+- Describe current state with metrics
+- Explain market/user context
+- Why this matters now (urgency/timing)
 
-2. **Success Metrics**:
-   - Table format: Metric | Current | Target | Measurement Method
-   - Primary + supporting metrics
-   - Include statistical significance requirements
+### Problem Statement:
+- One clear, user-focused problem
+- "Users struggle with X because Y, resulting in Z"
 
-3. **Task & Acceptance Criteria**:
-   - Table format: Task | PIC | Acceptance Criteria | Jira Link | Status
-   - Specific, testable criteria
-   - Clear ownership
+### Goals:
+- 2-4 specific, measurable goals
+- What success looks like
 
-4. **Timeline**:
-   - Phase-based or milestone-based
-   - Include deliverables per phase
-   - Realistic estimates
+### Non-Goals:
+- Explicitly list what we WON'T do
+- Prevent scope creep
+```
 
-5. **Risks & Mitigation**:
-   - Table: Risk | Impact | Mitigation
-   - Technical, resource, timeline risks
-   - Dependencies as risks
+**2. 👥 Target Personas / Market / Stakeholders**:
+```markdown
+| Type of persona | Profile |
+|---|---|
+| Primary: [User type] | [Brief description, needs, behaviors] |
+| Secondary: [User type] | [Description] |
+| Internal: Ops Team | [How they're impacted] |
+```
 
-6. **Open Questions**:
-   - Table: Question | Answer | Date Answered | Decision Owner
-   - Use [TBD] for unanswered
-   - Update as answered
+**3. 📊 Success Metrics / Business Impact**:
+```markdown
+| Goal / Area | Metric | Current Baseline | Target | Measurement Method |
+|---|---|---|---|---|
+| Engagement | CTR | 1.5% | 3.0% | Amplitude dashboard |
+| Conversion | Purchase rate | 0.8% | 1.5% | Transaction logs |
+| Performance | API latency p95 | 500ms | 200ms | DataDog monitoring |
+```
+
+**4. 🤔 Assumptions**:
+```markdown
+| Area | Assumption | Validation Plan |
+|---|---|---|
+| User | "Users prefer X over Y" | A/B test or user survey |
+| Tech | "Infra can handle 2x traffic" | Load test |
+| Business | "Partners will adopt API v2" | Pilot with 2 partners |
+```
+
+**5. 👥 Dependencies**:
+```markdown
+| Task / Deliverable | Owner (Squad/Team) | Due Date | Status | Notes |
+|---|---|---|---|---|
+| New API endpoint | Backend Team | 2026-05-01 | IN PROGRESS | Blocked on infra |
+| ML model training | DS Team | 2026-04-20 | NOT STARTED | Waiting for data |
+```
+
+**6. 🌟 Milestones**:
+```markdown
+| Milestone | Description | Target Date | Owner | Status | Jira Ticket |
+|---|---|---|---|---|---|
+| M1: Discovery | Requirements gathering, design | 2026-04-15 | PM Team | DONE | [EPIC-123] |
+| M2: Design Complete | UX finalized, specs ready | 2026-05-01 | Design | IN PROGRESS | [EPIC-124] |
+| M3: Dev Complete | Code complete, ready for QA | 2026-06-01 | Eng | NOT STARTED | [EPIC-125] |
+| M4: Launch | Feature live in prod | 2026-06-15 | All | NOT STARTED | [EPIC-126] |
+```
+
+**7. 📝 Requirements - Feature Requirements**:
+
+For each feature:
+```markdown
+#### Feature #1 – [Feature Name]
+
+**Summary**
+[2-3 sentence description]
+
+| Requirement | User Story | Notes | New Visual | Old Visual |
+|---|---|---|---|---|
+| REQ-1: [Title] | As a [persona], I want [capability], so that [value] | [Edge cases, clarifications] | [Figma link] | [Screenshot or N/A] |
+
+**High Level Flow**
+[Diagram or bullet-point flow]
+
+**Data & Feature Definition** (for ML/DS projects)
+- Input features: [list]
+- Model type: [e.g., XGBoost, Neural Net]
+- Refresh cadence: [e.g., daily batch]
+
+**Acceptance Criteria**
+
+*UX Flow & UI Behavior*
+1. Element placement: [Where it appears, visibility rules]
+2. Interactions: [Click, tap, hover behavior]
+3. Performance: [Load time < X ms]
+
+*Logic & Business Rules*
+1. Input → output mapping
+2. Configurable parameters (thresholds, limits)
+3. Error handling & fallback behavior
+
+*Data Tracking*
+1. Track `feature_clicked` when user clicks CTA
+2. Log properties: {item_id, position, variant}
+3. A/B test: 50/50 split by user_id suffix
+
+*Squad Scope*
+- **Platform Front-End**: Rendering, validation, tracking
+- **Platform Back-End**: API contracts, business logic, configs
+- **Data Science / MLE**: Model API, ranking, monitoring
+
+**Experiment Design** (if applicable)
+- Control: Existing behavior
+- Treatment: New feature enabled
+- Split: 50/50 by user suffix
+- Duration: 4 weeks
+- Success criteria: CTR improvement > 30%, p < 0.05
+```
+
+**8. ❓ Open Questions**:
+```markdown
+| Question | Owner | Answer | Date Answered |
+|---|---|---|---|
+| What's min data requirement per user? | DS Team | TBD | - |
+| How to handle API downtime? | MLE Team | Fallback to cached data | 2026-04-02 |
+```
+
+**Common Mistakes to Avoid**:
+- ❌ Vague problem statement ("improve UX")
+- ❌ Success metrics without baseline
+- ❌ User stories without acceptance criteria
+- ❌ Missing squad responsibilities
+- ❌ No validation plan for assumptions
+- ❌ Incomplete metadata (missing owners/dates)
 
 ---
 
@@ -194,28 +350,83 @@ d. Ask clarifying questions
 
 **Objective**: Ensure PRD completeness sebelum publish
 
-**Checklist**:
+**Checklist** (based on Template v2):
 ```
-[ ] Metadata complete (at minimum: owner, target release, status)
-[ ] Background explains current state & problem clearly
-[ ] Success metrics are specific & measurable
-[ ] Timeline has realistic milestones
-[ ] Tasks have clear acceptance criteria
-[ ] Dependencies identified
-[ ] Risks documented with mitigation
-[ ] References linked (Jira, dashboards, related docs)
-[ ] Writing is clear & free of jargon
-[ ] Technical details sufficient for engineering
-[ ] Business justification clear for stakeholders
+Metadata & Setup
+[ ] All metadata fields filled (at minimum: owner, reviewers, target release, status)
+[ ] Jira Epic linked (or marked TBD with follow-up plan)
+[ ] GTM Link provided (or marked TBD if not applicable)
+[ ] Priority level assigned (P0-P3)
+
+Problem & Goals
+[ ] Problem statement is clear and user-focused
+[ ] Background explains current state with data/metrics
+[ ] Goals are specific and measurable (not "improve UX")
+[ ] Non-Goals explicitly listed to prevent scope creep
+
+Personas & Impact
+[ ] Target personas identified (primary & secondary)
+[ ] Internal stakeholders listed with their roles
+[ ] Success metrics have current baseline AND target
+[ ] Measurement method specified for each metric
+
+Assumptions & Dependencies
+[ ] Key assumptions documented with validation plans
+[ ] Cross-team dependencies identified with owners
+[ ] Dependency due dates are realistic
+[ ] Dependency status tracked
+
+Requirements & Features
+[ ] Scope clearly defined (In Scope vs Out of Scope)
+[ ] Each feature has user stories with acceptance criteria
+[ ] UX/UI behavior specified (placement, interactions, states)
+[ ] Business logic documented (rules, configs, fallbacks)
+[ ] Data tracking events defined (event names, properties)
+[ ] Squad responsibilities clear (FE/BE/DS/QA scope)
+[ ] Experiment design included if A/B testing required
+
+Timeline & Milestones
+[ ] Milestones are realistic and achievable
+[ ] Each milestone has owner, date, status
+[ ] Jira tickets linked to milestones
+
+Documentation
+[ ] FAQ addresses common questions
+[ ] Open Questions tracked with owners
+[ ] References linked (related PRDs, docs, dashboards)
+[ ] API Contract documented if applicable
 ```
 
-**Red Flags** (fix these):
-- ❌ Vague success metrics ("improve user experience")
-- ❌ Missing acceptance criteria
-- ❌ No timeline or milestones
-- ❌ "Will discuss later" without action items
-- ❌ Technical approach missing for complex features
-- ❌ No risk assessment
+**Quality Gates** (must pass before APPROVED status):
+
+**🟢 READY FOR REVIEW**:
+- All metadata complete
+- Problem statement & goals clear
+- Success metrics defined
+- Feature requirements outlined
+
+**🟡 IN REVIEW**:
+- Feedback from reviewers addressed
+- Open questions answered or escalated
+- Dependencies confirmed with teams
+- Experiment design validated (if applicable)
+
+**🔴 APPROVED**:
+- All acceptance criteria validated
+- GTM plan linked and aligned
+- Tech doc available
+- Launch readiness confirmed
+
+**Red Flags** (fix before proceeding):
+- ❌ Vague success metrics ("improve user experience", "increase engagement")
+- ❌ Missing acceptance criteria for features
+- ❌ No timeline or unrealistic timeline
+- ❌ "Will discuss later" without concrete action items
+- ❌ Squad scope unclear (who builds what?)
+- ❌ No assumptions documented
+- ❌ Missing data tracking requirements
+- ❌ No validation plan for critical assumptions
+- ❌ Circular dependencies without mitigation
 
 ---
 
@@ -251,15 +462,29 @@ d. Ask clarifying questions
 
 ## Naming Conventions
 
-**Confluence Pages**:
+**Confluence Pages** (Template v2 format):
 ```
-[PREFIX] - [PROJECT] - [DESCRIPTION] - [DATE]
+[Tribe] – [Product Name] – [Feature Title] – [YYYYMMDD]
 
-Prefixes:
-- [KID] = Kredivo Indonesia
-- [ODS] = One-page Design Spec  
-- [RFC] = Request for Comments
-- [EXP] = Experiment
+Examples:
+- KID – Pegasus – Buy Again Model – 20260401
+- ODS – Pegasus – Biller Recommendation Experiment – 20250211
+- GRO – Checkout – Discount Code Feature – 20260315
+- DS – Analytics – User Segmentation API – 20260420
+
+Tribes/Teams:
+- KID = Kredivo Indonesia
+- ODS = One-page Design Spec
+- GRO = Growth Team
+- DS = Data Services
+- DT = Data Team
+- ENG = Engineering
+- PRD = Product (general)
+```
+
+**Alternative Format** (Legacy, still acceptable):
+```
+[PREFIX] PRD - YYYYMM - [TEAM] - [Feature Name]
 
 Examples:
 - [KID] PRD - 202604 - Pegasus - Buy Again Model
@@ -269,68 +494,82 @@ Examples:
 
 **File Names** (if saving locally):
 ```
-prd-[project]-[feature]-[yyyymmdd].md
+prd-[team]-[product]-[feature]-[yyyymmdd].md
 
 Examples:
-- prd-pegasus-buy-again-model-20260401.md
-- prd-checkout-discount-code-20260315.md
+- prd-ds-pegasus-buy-again-model-20260401.md
+- prd-growth-checkout-discount-code-20260315.md
+- prd-mle-ranking-model-v2-20260420.md
 ```
+
+**Best Practice**: 
+- Use Template v2 format for new PRDs in Confluence
+- Keep legacy format for backward compatibility if needed
+- Always include date for version tracking
 
 ---
 
-## Templates by Type
+## Official Template
 
-### Template 1: Standard Feature PRD
+**Template v2**: https://finacceljira.atlassian.net/wiki/spaces/DS/pages/5430511189
 
-Use for: New features, enhancements, major changes
+Use this as the canonical structure for ALL PRDs unless explicitly told otherwise.
 
-**Key Sections**:
-- Background | Context
-- Business Impact | Goals  
-- Timeline and Milestones
-- Task and Acceptance Criteria
-- Dependencies
-- Risks & Mitigation
-- References
+### When to Adapt the Template:
 
-### Template 2: Experiment/A/B Test PRD
+**For Standard Features**:
+- Use full template as-is
+- Include all sections
+- Focus on "Feature Requirements" with detailed acceptance criteria
 
-Use for: Experiments, A/B tests, hypothesis validation
+**For Experiments/A/B Tests**:
+- Emphasize "Experiment Design" in Feature Requirements section
+- Add detailed control vs treatment comparison
+- Include:
+  - User segmentation method
+  - Sample size calculation
+  - Duration & stopping criteria
+  - Statistical significance threshold
+  - Rollback plan
 
-**Key Sections**:
-- Background | Context (with Current Performance)
-- Experiment Goals
-- Experiment Design (Control vs Treatment)
-- Success Metrics
-- Task and Acceptance Criteria
-- References
+**For ML/Data Science Projects**:
+- Add "Data & Feature Definition" subsection in Feature Requirements
+- Include:
+  - Input features & data sources
+  - Model architecture choice
+  - Training/evaluation approach
+  - Inference method (batch/real-time)
+  - Model monitoring requirements
+  - Performance benchmarks
 
-### Template 3: ML/Model PRD
+**For Quick Specs/Small Features**:
+- Can simplify some sections (e.g., combine Personas into Problem Statement)
+- But still maintain core structure:
+  - Metadata
+  - Objective/Problem
+  - Success Metrics
+  - Requirements with Acceptance Criteria
+  - Open Questions
 
-Use for: Machine learning models, data science projects
+**For Technical/Infrastructure Projects**:
+- Emphasize "Prerequisites" section
+- Add detailed "API Contract" section
+- Include architecture diagrams in Requirements
+- Focus on non-functional requirements (performance, security, scalability)
 
-**Key Sections**:
-- Background | Context
-- Business Impact | Goals
-- Technical Approach (Model Architecture, Features, Training)
-- Model Output Specification
-- A/B Testing Strategy
-- Timeline and Milestones
-- Task and Acceptance Criteria
-- Risks & Mitigation
+### Customization Guidelines:
 
-### Template 4: ODS (One-Page Design Spec)
+✅ **DO**:
+- Add sections if project needs them (e.g., "Security Requirements", "Data Privacy")
+- Expand Feature Requirements with project-specific details
+- Include relevant diagrams, mockups, data flows
+- Add more rows to tables as needed
 
-Use for: Quick specs, simple features, small experiments
-
-**Key Sections**:
-- Metadata table
-- Background (1-2 paragraphs)
-- Goals (bullet points)
-- Design/Approach (brief)
-- Success Metrics
-- Timeline
-- References
+❌ **DON'T**:
+- Skip required sections (Metadata, Objective, Success Metrics, Requirements)
+- Remove key fields from Metadata table
+- Omit Acceptance Criteria
+- Skip Data Tracking requirements
 
 ---
 
@@ -423,23 +662,49 @@ Control vs treatment, 50-50 split, run 4 weeks."
 
 ## Quality Standards
 
-**A good PRD has**:
-✅ Clear problem statement & solution
-✅ Measurable success metrics
-✅ Specific acceptance criteria
-✅ Realistic timeline
-✅ Identified risks & mitigation
-✅ Complete references
-✅ Proper formatting (tables, sections, links)
+**A good PRD (Template v2) has**:
+✅ Complete metadata (all owners, dates, links identified)
+✅ Clear, user-focused problem statement
+✅ Measurable success metrics with baselines & targets
+✅ Well-defined personas & stakeholders
+✅ Documented assumptions with validation plans
+✅ Cross-team dependencies tracked
+✅ Detailed feature requirements with acceptance criteria
+✅ UX/UI behavior specified
+✅ Business logic documented
+✅ Data tracking requirements defined
+✅ Squad responsibilities clear (FE/BE/DS scope)
+✅ Realistic timeline with milestones
+✅ FAQ addresses common questions
+✅ Open questions tracked with owners
+✅ Complete references (Jira, docs, dashboards)
+✅ API contract documented (if applicable)
+✅ Proper formatting (tables, sections, emojis, links)
 
 **Common Issues to Avoid**:
-❌ Vague requirements
-❌ Missing success metrics
-❌ No timeline
-❌ Unclear ownership
-❌ Incomplete technical details
-❌ No risk assessment
-❌ Poor formatting
+❌ Vague requirements ("improve UX", "make it better")
+❌ Success metrics without baseline or measurement method
+❌ Missing squad scope (who builds what?)
+❌ No data tracking requirements
+❌ Unclear timeline or missing milestones
+❌ Assumptions not validated
+❌ Dependencies without due dates or owners
+❌ User stories without acceptance criteria
+❌ No experiment design for A/B tests
+❌ Missing GTM plan for launches
+❌ Incomplete technical documentation
+❌ Poor formatting (no tables, broken links)
+❌ Document status not updated (stuck in DRAFT)
+
+**Review Checklist** (before moving to APPROVED):
+1. All reviewers have provided feedback
+2. Open questions answered or escalated
+3. Dependencies confirmed with owning teams
+4. Success metrics validated by analytics
+5. Technical feasibility confirmed by engineering
+6. GTM plan aligned with timeline
+7. QA test plan discussed
+8. Launch readiness criteria defined
 
 ---
 
@@ -460,4 +725,13 @@ Control vs treatment, 50-50 split, run 4 weeks."
 
 ## Changelog
 
-- 2026-04-01: Initial version based on Pegasus PRD analysis
+- **2026-04-01 v2.0**: Updated to Template v2 structure
+  - Adopted official template: https://finacceljira.atlassian.net/wiki/spaces/DS/pages/5430511189
+  - Added comprehensive metadata fields (GTM Link, Tech Doc)
+  - Restructured sections with emoji headers (🎯 📊 👥 etc.)
+  - Enhanced Feature Requirements format with detailed acceptance criteria
+  - Added Personas, Assumptions, FAQ sections
+  - Improved validation checklist for quality gates
+  - Removed old template variants, unified on single standard
+  
+- **2026-04-01 v1.0**: Initial version based on Pegasus PRD analysis
