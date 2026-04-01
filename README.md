@@ -2,11 +2,16 @@
 
 A GitHub Copilot customization toolkit for Product Managers — powered by **MCP (Model Context Protocol)** integration with Jira and Confluence.
 
+> 🔒 **Default Configuration: READ-ONLY MODE**  
+> This toolkit is configured for **safe exploration** with search & read permissions only.  
+> Write operations (create/update/delete) are disabled by default to prevent accidental modifications.
+
 With this toolkit, GitHub Copilot acts as your **Senior PM assistant** capable of:
-- Reading & creating Jira tickets, managing sprints, checking backlog
-- Reading & writing Confluence pages, PRDs, meeting notes
-- Drafting PRDs with structured format (Objective, Success Metrics, User Stories, Constraints)
-- Identifying risks and blockers from sprint data
+- ✅ **Search & analyze** Jira tickets, sprint progress, roadmap data
+- ✅ **Search & read** Confluence pages, PRDs, meeting notes, documentation  
+- ✅ **Generate insights** from backlog, identify blockers, analyze metrics
+- ✅ **Draft PRDs locally** with structured format (Objective, Success Metrics, AC)
+- ❌ **No accidental modifications** — create/update operations disabled by default
 
 ---
 
@@ -105,29 +110,93 @@ Cari semua tiket dengan status In Progress di project PM
 │   ├── instructions/
 │   │   └── senior-pm.instructions.md   # PM persona & guidelines for Copilot
 │   └── skills/
-│       └── atlassian-ops/
-│           └── SKILL.md               # Full Jira + Confluence tool reference (67+ tools)
-└── .vscode/
-    ├── mcp.json                        # Your credentials (gitignored, not in repo)
-    ├── mcp.json.example                # Template — copy this and fill your creds
-    └── settings.json                   # VS Code config
+│       ├── atlassian-ops/
+│       │   └── SKILL.md                # Full Jira + Confluence tool reference (67+ tools)
+│       └── prd-writer/
+│           └── SKILL.md                # PRD generation workflow
+├── .vscode/
+│   ├── mcp.json                        # Your credentials (gitignored, not in repo)
+│   ├── mcp.json.example                # Template — copy this and fill your creds
+│   └── settings.json                   # VS Code config + tool restrictions (READ-ONLY mode)
+└── 11-prd-template.md                  # PRD template structure
 ```
 
-### Jira Tools (examples)
-- `jira_search` — query issues with JQL
-- `jira_get_issue` — get full ticket details
-- `jira_create_issue` / `jira_update_issue` — create or update tickets
-- `jira_transition_issue` — move ticket between statuses
-- `jira_get_sprint_issues` — list all issues in a sprint
-- `jira_get_sprints_from_board` — view sprint history & active sprint
+---
 
-### Confluence Tools (examples)
-- `confluence_search` — full-text search across spaces
-- `confluence_get_page` / `confluence_create_page` / `confluence_update_page`
-- `confluence_add_comment` — comment on pages
-- `confluence_get_page_history` — track changes
+## 🔒 Read-Only Mode (Default)
 
-Full list in [.github/skills/atlassian-ops/SKILL.md](.github/skills/atlassian-ops/SKILL.md).
+By default, this toolkit is configured for **safe exploration** to prevent accidental modifications:
+
+### ✅ Allowed Operations
+- Search Jira issues with JQL
+- Get issue details, comments, history
+- Search Confluence pages
+- Read PRDs, documentation, meeting notes
+- Analyze sprint progress & metrics
+- Generate local drafts (PRDs, reports)
+
+### ❌ Prohibited Operations  
+- Create/update/delete Jira tickets
+- Transition issue status
+- Create/update Confluence pages
+- Add comments or labels
+- Upload attachments
+
+**Configuration:** Write operations are disabled via `.vscode/settings.json` → `github.copilot.chat.tools.disabled`
+
+**Enable Write Mode:** Edit `.vscode/settings.json` and remove specific tools from the disabled list. Restart VS Code after changes.
+
+---
+
+## Available MCP Tools
+
+### Jira Tools (Read-Only by Default)
+- ✅ `jira_search` — query issues with JQL
+- ✅ `jira_get_issue` — get full ticket details
+- ✅ `jira_get_sprint_issues` — list all issues in a sprint
+- ✅ `jira_get_sprints_from_board` — view sprint history & active sprint
+- ❌ `jira_create_issue` / `jira_update_issue` — **DISABLED**
+- ❌ `jira_transition_issue` — **DISABLED**
+
+### Confluence Tools (Read-Only by Default)
+- ✅ `confluence_search` — full-text search across spaces
+- ✅ `confluence_get_page` — read page content
+- ✅ `confluence_get_page_history` — track changes
+- ❌ `confluence_create_page` / `confluence_update_page` — **DISABLED**
+- ❌ `confluence_add_comment` — **DISABLED**
+
+Full list (67+ tools) in [.github/skills/atlassian-ops/SKILL.md](.github/skills/atlassian-ops/SKILL.md).
+
+---
+
+## Usage Examples (Read-Only Mode)
+
+### Sprint Analysis
+```
+Analisa sprint aktif di board DPT — berapa tiket done vs in progress?
+```
+
+### Search PRDs
+```
+Cari PRD tentang "recommendation engine" di space DS
+```
+
+### Identify Blockers
+```
+List semua tiket yang stuck lebih dari 5 hari tanpa update di project DPT
+```
+
+### Story Points Aggregation
+```
+Hitung total Story Points di sprint aktif per status (To Do, In Progress, Done)
+```
+
+### Generate Local Drafts
+```
+Bikin draft PRD untuk "User Segmentation v3" dan simpan di local file
+```
+
+Ask Copilot for more examples tailored to your workflow.
 
 ---
 

@@ -1,16 +1,58 @@
 {
+  // ============================================
+  // MCP Configuration Template - Read-Only Mode
+  // ============================================
+  // Copy this file to mcp.json and fill in your credentials.
+  //
+  // This configuration enables GitHub Copilot to access Jira & Confluence
+  // with READ-ONLY permissions (search and read only).
+  //
+  // Write operations are DISABLED via settings.json:
+  // - github.copilot.chat.tools.disabled
+  //
+  // Allowed operations:
+  // ✅ Search Jira issues (jira_search, jira_get_issue)
+  // ✅ Search Confluence pages (confluence_search, confluence_get_page)
+  // ✅ Read comments, attachments, history
+  // ✅ Get sprint/board/project data
+  //
+  // Forbidden operations (see settings.json for full list):
+  // ❌ Create/update/delete Confluence pages
+  // ❌ Create/update/transition Jira tickets
+  // ❌ Add comments, labels, watchers
+  // ❌ Upload attachments
+  // ============================================
+  
   "servers": {
     "mcp-atlassian": {
       "command": "uvx",
       "args": ["mcp-atlassian"],
       "env": {
+        // Confluence Configuration
         "CONFLUENCE_URL": "https://YOUR_DOMAIN.atlassian.net/wiki",
         "CONFLUENCE_USERNAME": "your-email@company.com",
         "CONFLUENCE_API_TOKEN": "YOUR_ATLASSIAN_API_TOKEN",
+        
+        // Jira Configuration
         "JIRA_URL": "https://YOUR_DOMAIN.atlassian.net",
         "JIRA_USERNAME": "your-email@company.com",
         "JIRA_API_TOKEN": "YOUR_ATLASSIAN_API_TOKEN"
       }
     }
   }
+  
+  // ============================================
+  // Setup Instructions:
+  // ============================================
+  // 1. Copy this file: cp mcp.json.example mcp.json
+  // 2. Generate API token: https://id.atlassian.com/manage-profile/security/api-tokens
+  // 3. Replace placeholders above with your actual values
+  // 4. Save and restart VS Code
+  //
+  // Security Notes:
+  // - mcp.json is in .gitignore - your credentials are safe
+  // - Use YOUR personal API token (not shared accounts)
+  // - Rotate tokens every 90 days (recommended)
+  // - Permissions inherit from your Atlassian account
+  // ============================================
 }

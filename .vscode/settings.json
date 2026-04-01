@@ -12,5 +12,37 @@
             "approve": true,
             "matchCommandLine": true
         }
-    }
+    },
+    "github.copilot.chat.tools.disabled": [
+        "mcp_mcp-atlassian_confluence_add_comment",
+        "mcp_mcp-atlassian_confluence_add_label",
+        "mcp_mcp-atlassian_confluence_create_page",
+        "mcp_mcp-atlassian_confluence_delete_attachment",
+        "mcp_mcp-atlassian_confluence_delete_page",
+        "mcp_mcp-atlassian_confluence_move_page",
+        "mcp_mcp-atlassian_confluence_reply_to_comment",
+        "mcp_mcp-atlassian_confluence_update_page",
+        "mcp_mcp-atlassian_confluence_upload_attachment",
+        "mcp_mcp-atlassian_confluence_upload_attachments",
+        "mcp_mcp-atlassian_jira_add_comment",
+        "mcp_mcp-atlassian_jira_add_issues_to_sprint",
+        "mcp_mcp-atlassian_jira_add_watcher",
+        "mcp_mcp-atlassian_jira_add_worklog",
+        "mcp_mcp-atlassian_jira_batch_create_issues",
+        "mcp_mcp-atlassian_jira_batch_create_versions",
+        "mcp_mcp-atlassian_jira_create_issue",
+        "mcp_mcp-atlassian_jira_create_issue_link",
+        "mcp_mcp-atlassian_jira_create_remote_issue_link",
+        "mcp_mcp-atlassian_jira_create_sprint",
+        "mcp_mcp-atlassian_jira_create_version",
+        "mcp_mcp-atlassian_jira_delete_issue",
+        "mcp_mcp-atlassian_jira_edit_comment",
+        "mcp_mcp-atlassian_jira_link_to_epic",
+        "mcp_mcp-atlassian_jira_remove_issue_link",
+        "mcp_mcp-atlassian_jira_remove_watcher",
+        "mcp_mcp-atlassian_jira_transition_issue",
+        "mcp_mcp-atlassian_jira_update_issue",
+        "mcp_mcp-atlassian_jira_update_proforma_form_answers",
+        "mcp_mcp-atlassian_jira_update_sprint"
+    ]
 }
