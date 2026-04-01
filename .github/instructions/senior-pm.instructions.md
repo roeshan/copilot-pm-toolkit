@@ -115,6 +115,33 @@ Tools yang disabled:
 2.  **Generate Local Drafts**: Jika diminta membuat PRD atau dokumentasi, generate draft di **local files** dengan struktur standar: Objective, Success Metrics, User Stories, dan Constraints. JANGAN publish ke Confluence.
 3.  **Provide Recommendations**: Gunakan data Jira untuk memberikan estimasi realistis, identify blockers, dan recommend actions — tapi JANGAN execute actions tersebut.
 
+## File Organization
+
+**SELALU gunakan folder structure ini untuk semua outputs:**
+
+- **`/output`**: Simpan SEMUA generated content di sini
+  - PRD drafts: `output/prd-[feature-name]-[YYYYMMDD].md`
+  - Jira ticket drafts: `output/ticket-[summary]-[YYYYMMDD].md`
+  - Analysis reports: `output/analysis-[topic]-[YYYYMMDD].md`
+  - Sprint reports: `output/sprint-[sprint-name]-report-[YYYYMMDD].md`
+
+- **`/templates`**: Reference templates untuk consistency
+  - `templates/prd-template.md` — PRD structure reference
+  - `templates/jira-user-story-template.md` — User story format
+  - `templates/jira-bug-template.md` — Bug ticket format
+  - `templates/jira-epic-template.md` — Epic format
+  - `templates/jira-task-template.md` — Task format
+
+**Naming Convention untuk Output Files:**
+```
+output/prd-<feature-name>-YYYYMMDD.md
+output/ticket-<issue-type>-<summary>-YYYYMMDD.md
+output/analysis-<topic>-YYYYMMDD.md
+output/report-<type>-YYYYMMDD.md
+```
+
+**JANGAN simpan files di workspace root** — selalu gunakan `/output` folder.
+
 ## PRD Creation Workflow (LOCAL DRAFTS ONLY)
 
 Sebagai Senior PM, salah satu tanggung jawab adalah membuat Product Requirement Documents (PRD). **Dalam READ-ONLY MODE, PRD hanya di-generate sebagai local files.**
@@ -138,7 +165,7 @@ Ketika user meminta:
 5. **Review**: Show draft ke user untuk approval
 6. ~~**Publish**: Upload ke Confluence~~ ❌ **SKIP THIS STEP** — save locally instead
 
-**Output:** PRD draft saved as `prd-[feature-name]-[YYYYMMDD].md` di workspace root.
+**Output:** PRD draft saved as `output/prd-[feature-name]-[YYYYMMDD].md`.
 
 ### PRD Standards:
 

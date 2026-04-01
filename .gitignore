@@ -10,3 +10,4 @@
 
 # VS Code user-specific settings (optional — remove if you want to share settings.json)
 # .vscode/settings.json
+/output

@@ -102,6 +102,42 @@ Cari semua tiket dengan status In Progress di project PM
 
 ---
 
+## Folder Structure
+
+```
+pm-toolkit/
+├── .github/
+│   ├── instructions/
+│   │   └── senior-pm.instructions.md    # Main agent instructions
+│   └── skills/
+│       ├── atlassian-ops/               # Jira/Confluence operations
+│       └── prd-writer/                  # PRD generation workflow
+├── .vscode/
+│   ├── mcp.json                         # MCP server config (credentials)
+│   └── settings.json                    # Tool restrictions (READ-ONLY)
+├── output/                              # 📂 All generated content saved here
+│   ├── prd-*.md                         # PRD drafts
+│   ├── ticket-*.md                      # Jira ticket drafts
+│   ├── analysis-*.md                    # Analysis reports
+│   └── sprint-*.md                      # Sprint reports
+├── templates/                           # 📝 Reference templates
+│   ├── prd-template.md                  # PRD structure
+│   ├── jira-user-story-template.md      # User story format
+│   ├── jira-bug-template.md             # Bug ticket format
+│   ├── jira-epic-template.md            # Epic format
+│   └── jira-task-template.md            # Task format
+└── README.md
+```
+
+**Key Principles:**
+- ✅ **All outputs go to `/output`** — never saved to workspace root
+- ✅ **Templates in `/templates`** — consistent format reference
+- ✅ **Naming convention**: `output/[type]-[name]-[YYYYMMDD].md`
+- ✅ **Git-ignored**: `/output` folder is in `.gitignore` (safe for sensitive data)
+```
+
+---
+
 ## What's Included
 
 ```
@@ -197,6 +233,53 @@ Bikin draft PRD untuk "User Segmentation v3" dan simpan di local file
 ```
 
 Ask Copilot for more examples tailored to your workflow.
+
+---
+
+## Quick Reference
+
+### Generate PRD
+```
+Buatkan PRD untuk [feature name]
+```
+**Output:** `output/prd-[feature-name]-[YYYYMMDD].md`  
+**Template:** `templates/prd-template.md`
+
+### Generate Jira Ticket Draft
+```
+Buatkan user story untuk fitur [feature]
+```
+```
+Buatkan bug ticket untuk [issue description]
+```
+```
+Buatkan epic untuk [initiative name]
+```
+**Output:** `output/ticket-[type]-[summary]-[YYYYMMDD].md`  
+**Templates:** `templates/jira-*-template.md`
+
+### Sprint Analysis
+```
+Analisa sprint aktif di board [board name]
+```
+**Output:** `output/sprint-[sprint-name]-report-[YYYYMMDD].md`
+
+### Search & Query
+```
+Cari PRD tentang [keyword] di space DS
+```
+```
+List tiket In Progress di project [PROJECT-KEY]
+```
+```
+Hitung Story Points per status di sprint aktif
+```
+
+### File Locations
+- **All outputs**: `/output` folder
+- **All templates**: `/templates` folder
+- **Instructions**: `.github/instructions/senior-pm.instructions.md`
+- **Skills**: `.github/skills/*/SKILL.md`
 
 ---
 

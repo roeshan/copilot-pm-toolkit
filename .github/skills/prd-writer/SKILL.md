@@ -436,27 +436,29 @@ Documentation
 
 **Options**:
 
-**A. Markdown Draft** (Default):
+**A. Local Markdown File** (Default for READ-ONLY mode):
 - Generate complete markdown
+- **Save to `/output` folder** with naming convention:
+  - `output/prd-[team]-[product]-[feature]-[YYYYMMDD].md`
+  - Example: `output/prd-ds-pegasus-buy-again-model-20260401.md`
 - Show to user for review
-- Save to workspace if requested
+- Reference template from `/templates/prd-template.md`
 
-**B. Confluence Page**:
-- Convert to Confluence storage format
-- Use `confluence_create_page` with:
-  - `space_key`: (e.g., "DS")
-  - `parent_id`: (e.g., 3507979471 for PRD Pegasus)
-  - `title`: Follow naming convention (e.g., "[KID] PRD - 202604 - TEAM - Feature Name")
-  - `emoji`: Appropriate emoji (🚀📋📊🤖)
+**B. Confluence Page** (DISABLED in READ-ONLY mode):
+- ❌ `confluence_create_page` is DISABLED
+- User must manually copy-paste to Confluence
+- Provide instructions: "Copy content from `output/[filename].md` and paste to Confluence"
 
-**C. Local File**:
-- Save as `.md` file in workspace
-- Suggested location: `/docs/prds/` or `/prd/`
+**C. Draft for Manual Upload**:
+- Save to `/output` folder
+- Provide Confluence URL and space key
+- User manually creates page
 
 **Always**:
 - Show draft first untuk review
-- Ask user preference: "Want me to upload to Confluence now, or review first?"
-- After upload, provide Confluence link
+- Save to `/output` folder (NOT workspace root)
+- Follow naming convention: `prd-[team]-[product]-[feature]-[YYYYMMDD].md`
+- If asked to upload: Use **REFUSAL PROTOCOL** (READ-ONLY mode)
 
 ---
 
@@ -494,10 +496,17 @@ Examples:
 
 **File Names** (if saving locally):
 ```
-prd-[team]-[product]-[feature]-[yyyymmdd].md
+output/prd-[team]-[product]-[feature]-[yyyymmdd].md
 
 Examples:
-- prd-ds-pegasus-buy-again-model-20260401.md
+- output/prd-ds-pegasus-buy-again-model-20260401.md
+- output/prd-kid-checkout-discount-code-20260315.md
+- output/prd-gro-analytics-user-segmentation-20260420.md
+```
+
+**Templates Location:**
+- Reference template: `templates/prd-template.md`
+- All templates stored in `/templates` folder
 - prd-growth-checkout-discount-code-20260315.md
 - prd-mle-ranking-model-v2-20260420.md
 ```

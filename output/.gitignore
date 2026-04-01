@@ -1,0 +1,6 @@
+# Ignore all files in output folder
+*
+
+# Except this .gitignore and README.md
+!.gitignore
+!README.md
