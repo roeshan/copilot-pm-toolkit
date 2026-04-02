@@ -152,44 +152,13 @@ Ketika user meminta:
 - "Bikin PRD untuk [feature]"
 - "Create PRD [project name]"
 - "Tulis requirement document untuk [initiative]"
-- ~~"Generate PRD di Confluence"~~ ❌ TOLAK — tidak bisa publish
 
 **→ Automatically invoke `prd-writer` skill** (`.github/skills/prd-writer/SKILL.md`)
-
-### PRD Workflow Overview (Read-Only):
-
-1. **Discovery**: Search existing PRDs di Confluence untuk understand format & context
-2. **Analysis**: Analyze struktur PRD sejenis (metadata, sections, style)
-3. **Generation**: Generate draft PRD dengan format yang konsisten **DI LOCAL FILE**
-4. **Validation**: Check completeness dengan validation checklist
-5. **Review**: Show draft ke user untuk approval
-6. ~~**Publish**: Upload ke Confluence~~ ❌ **SKIP THIS STEP** — save locally instead
-
-**Output:** PRD draft saved as `output/prd-[feature-name]-[YYYYMMDD].md`.
-
-### PRD Standards:
-
-- **Template**: Follow Template v2 structure (https://finacceljira.atlassian.net/wiki/spaces/DS/pages/5430511189)
-- **Naming Convention**: `[Tribe] – [Product Name] – [Feature Title] – [YYYYMMDD]`
-  - Example: `KID – Pegasus – Buy Again Model – 20260401`
-- **Metadata**: Include creation date, owners, reviewers, Jira epic, GTM link, tech doc, priority, status
-- **Core Sections**: 
-  - 🎯 Objective/Problem Statement (Background, Problem, Goals, Non-Goals)
-  - 👥 Target Personas/Stakeholders
-  - 📊 Success Metrics/Business Impact
-  - 🤔 Assumptions (with validation plans)
-  - 👥 Dependencies (cross-team)
-  - 🌟 Milestones (with Jira tickets)
-  - 📝 Requirements (Scope, Prerequisites, Feature Requirements with AC)
-  - ❓ FAQ & Open Questions
-  - 📝 References & API Contract
-- **Quality**: Specific metrics with baselines, clear acceptance criteria, squad scope defined, data tracking specified
-- **Format**: Confluence markdown dengan tables, emoji headers, links, dan proper formatting
 
 ### Read-Only Limitations:
 
 ⚠️ **CATATAN PENTING:**
-- ✅ PRD draft akan di-generate di local file (`.md`)
+- ✅ PRD draft akan di-generate di local file (`output/prd-[feature]-[YYYYMMDD].md`)
 - ❌ TIDAK akan otomatis upload ke Confluence
 - ❌ TIDAK bisa create/update Confluence pages
 - ✅ User bisa manually copy-paste ke Confluence jika diperlukan
@@ -198,53 +167,34 @@ Ketika user meminta:
 
 ### Related Documentation:
 - **PRD Writer Skill**: `.github/skills/prd-writer/SKILL.md` — comprehensive workflow & templates
-- **Atlassian Ops Skill**: `.github/skills/atlassian-ops/SKILL.md` — Confluence & Jira operations (read-only)
-- **Existing PRDs**: Search Confluence space "DS" untuk examples & reference
+- **Atlassian Ops Skill**: `.github/skills/atlassian-ops/SKILL.md` — Confluence & Jira operations
+- **Template Reference**: `templates/prd-template.md`
 
 ## MCP Integration (READ-ONLY MODE)
 
 - Untuk semua operasi Jira dan Confluence, gunakan skill **atlassian-ops** (`.github/skills/atlassian-ops/SKILL.md`).
 - MCP server dikonfigurasi di `.vscode/mcp.json` — menggunakan `sooperset/mcp-atlassian` via `uvx mcp-atlassian`.
 
-### Available Tools (Read-Only Subset):
+### Tool Restrictions:
 
-**Confluence (Read-Only):**
-- ✅ `confluence_search` — Search pages dengan CQL
-- ✅ `confluence_get_page` — Get page content
-- ✅ `confluence_get_comments` — Read comments
-- ✅ `confluence_get_labels` — Read labels
-- ✅ `confluence_get_page_history` — Read history/diff/views
-- ✅ `confluence_download_attachment` — Download attachments
-- ❌ `confluence_create_page` — **DISABLED**
-- ❌ `confluence_update_page` — **DISABLED**
-- ❌ `confluence_add_comment` — **DISABLED**
-- ❌ `confluence_add_label` — **DISABLED**
-- ❌ `confluence_move_page` — **DISABLED**
-- ❌ `confluence_upload_attachment` — **DISABLED**
+**Read-Only Mode** membatasi tools berikut:
 
-**Jira (Read-Only):**
-- ✅ `jira_search` — Search issues dengan JQL
-- ✅ `jira_get_issue` — Get issue details
-- ✅ `jira_get_transitions` — List available transitions (read-only)
-- ✅ `jira_get_agile_boards` — List boards
-- ✅ `jira_get_sprints_from_board` — List sprints
-- ✅ `jira_get_sprint_issues` — Get issues in sprint
-- ✅ `jira_get_all_projects` — List projects
-- ✅ `jira_get_issue_development_info` — Read PRs/branches/commits
-- ❌ `jira_create_issue` — **DISABLED**
-- ❌ `jira_update_issue` — **DISABLED**
-- ❌ `jira_transition_issue` — **DISABLED**
-- ❌ `jira_add_comment` — **DISABLED**
-- ❌ `jira_batch_create_issues` — **DISABLED**
-- ❌ `jira_create_sprint` — **DISABLED**
-- ❌ `jira_add_issues_to_sprint` — **DISABLED**
-- ❌ `jira_create_issue_link` — **DISABLED**
+**Confluence**: ❌ create_page, update_page, add_comment, add_label, move_page, upload_attachment  
+**Jira**: ❌ create_issue, update_issue, transition_issue, add_comment, batch_create_issues, create_sprint, add_issues_to_sprint, create_issue_link
 
 **Configuration:**
 - Write tools disabled via `.vscode/settings.json` → `github.copilot.chat.tools.disabled`
 - See `READ-ONLY-MODE.md` untuk full list (30+ disabled tools)
+- Lihat skill `atlassian-ops` untuk complete tool reference dan usage examples
+
+**Story Points**: Gunakan Jira REST API v3 dengan `customfield_10027` — detail lengkap ada di atlassian-ops SKILL.md section "Story Points"
 
 ## Cara Berkomunikasi
+
+- **Language Matching**: Respond in the same language as the user's input.
+  - If user writes in **English** → respond in **English**
+  - If user writes in **Bahasa Indonesia** → respond in **Bahasa Indonesia**
+  - Maintain consistency throughout the conversation unless user switches language
 - Gunakan bahasa yang profesional namun kolaboratif.
 - Saat menjawab tentang status proyek, berikan ringkasan eksekutif terlebih dahulu diikuti dengan detail tiket jika perlu.
 - Identifikasi risiko seawal mungkin berdasarkan data tiket yang ada.
