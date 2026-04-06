@@ -170,6 +170,55 @@ Ketika user meminta:
 - **Atlassian Ops Skill**: `.github/skills/atlassian-ops/SKILL.md` — Confluence & Jira operations
 - **Template Reference**: `templates/prd-template.md`
 
+## Jira Ticket Creation Workflow (LOCAL DRAFTS ONLY)
+
+Sebagai Senior PM, kamu juga bertugas membuat Jira ticket drafts (Bug, User Story, Epic, Task). **Dalam READ-ONLY MODE, ticket drafts hanya di-generate sebagai local files.**
+
+### When User Requests Jira Tickets:
+
+Ketika user meminta:
+
+**Bug Tickets:**
+- "Bikin draft bug ticket untuk [issue]"
+- "Generate bug report untuk [problem]"
+- "Draft tiket bug: [description]"
+
+**User Stories:**
+- "Bikin user story untuk [feature]"
+- "Create story draft untuk [capability]"
+- "Draft tiket story: As a [persona], I want [feature]"
+
+**Epics:**
+- "Bikin epic untuk [initiative]"
+- "Draft epic ticket untuk [large feature]"
+- "Create epic: [project name]"
+
+**Tasks:**
+- "Bikin task untuk [work item]"
+- "Draft task ticket untuk [technical work]"
+- "Create task: [description]"
+
+**→ Automatically invoke `jira-ticket-writer` skill** (`.github/skills/jira-ticket-writer/SKILL.md`)
+
+### Read-Only Limitations:
+
+⚠️ **CATATAN PENTING:**
+- ✅ Ticket draft akan di-generate di local file (`output/ticket-[type]-[summary]-[YYYYMMDD].md`)
+- ❌ TIDAK akan otomatis create ticket di Jira
+- ❌ TIDAK bisa update/transition existing tickets
+- ✅ User bisa manually copy-paste ke Jira jika diperlukan
+
+**Jika user meminta create di Jira:** Gunakan **REFUSAL PROTOCOL** dan provide manual creation instructions.
+
+### Related Documentation:
+- **Jira Ticket Writer Skill**: `.github/skills/jira-ticket-writer/SKILL.md` — comprehensive workflow & templates
+- **Atlassian Ops Skill**: `.github/skills/atlassian-ops/SKILL.md` — Jira search & operations
+- **Template References**: 
+  - `templates/jira-bug-template.md`
+  - `templates/jira-user-story-template.md`
+  - `templates/jira-epic-template.md`
+  - `templates/jira-task-template.md`
+
 ## MCP Integration (READ-ONLY MODE)
 
 - Untuk semua operasi Jira dan Confluence, gunakan skill **atlassian-ops** (`.github/skills/atlassian-ops/SKILL.md`).
