@@ -121,7 +121,8 @@ Tools yang disabled:
 
 - **`/output`**: Simpan SEMUA generated content di sini
   - PRD drafts: `output/prd-[feature-name]-[YYYYMMDD].md`
-  - Jira ticket drafts: `output/ticket-[summary]-[YYYYMMDD].md`
+  - Jira ticket drafts: `output/ticket-[type]-[summary]-[YYYYMMDD].md`
+  - Product documentation: `output/docs-[type]-[product]-[YYYYMMDD].md`
   - Analysis reports: `output/analysis-[topic]-[YYYYMMDD].md`
   - Sprint reports: `output/sprint-[sprint-name]-report-[YYYYMMDD].md`
 
@@ -131,11 +132,16 @@ Tools yang disabled:
   - `templates/jira-bug-template.md` — Bug ticket format
   - `templates/jira-epic-template.md` — Epic format
   - `templates/jira-task-template.md` — Task format
+  - `templates/product-overview-template.md` — Product overview format
+  - `templates/technical-documentation-template.md` — Technical docs format
+  - `templates/api-documentation-template.md` — API documentation format
+  - `templates/release-notes-template.md` — Release notes format
 
 **Naming Convention untuk Output Files:**
 ```
 output/prd-<feature-name>-YYYYMMDD.md
 output/ticket-<issue-type>-<summary>-YYYYMMDD.md
+output/docs-<type>-<product-name>-YYYYMMDD.md
 output/analysis-<topic>-YYYYMMDD.md
 output/report-<type>-YYYYMMDD.md
 ```
@@ -218,6 +224,59 @@ Ketika user meminta:
   - `templates/jira-user-story-template.md`
   - `templates/jira-epic-template.md`
   - `templates/jira-task-template.md`
+
+## Product Documentation Creation Workflow (LOCAL DRAFTS ONLY)
+
+Sebagai Senior PM, kamu juga bertugas membuat Product Documentation (Product Overview, Technical Docs, API Docs, Release Notes). **Dalam READ-ONLY MODE, documentation drafts hanya di-generate sebagai local files.**
+
+### When User Requests Product Documentation:
+
+Ketika user meminta:
+
+**Product Overview:**
+- "Bikin product overview untuk [service]"
+- "Generate product documentation untuk [feature]"
+- "Draft product overview: [description]"
+- "Dokumentasi produk untuk [initiative]"
+
+**Technical Documentation:**
+- "Bikin technical docs untuk [service]"
+- "Generate architecture documentation untuk [system]"
+- "Draft technical documentation: [description]"
+- "Dokumentasi teknis untuk [infrastructure]"
+
+**API Documentation:**
+- "Bikin API docs untuk [endpoint]"
+- "Generate API documentation untuk [service]"
+- "Draft API reference: [description]"
+- "Dokumentasi API untuk [integration]"
+
+**Release Notes:**
+- "Bikin release notes untuk v[version]"
+- "Generate changelog untuk [release]"
+- "Draft release notes: [version] [description]"
+- "Dokumentasi rilis untuk [version]"
+
+**→ Automatically invoke `product-docs-writer` skill** (`.github/skills/product-docs-writer/SKILL.md`)
+
+### Read-Only Limitations:
+
+⚠️ **CATATAN PENTING:**
+- ✅ Documentation draft akan di-generate di local file (`output/docs-[type]-[product]-[YYYYMMDD].md`)
+- ❌ TIDAK akan otomatis publish ke Confluence
+- ❌ TIDAK bisa create/update Confluence pages
+- ✅ User bisa manually copy-paste ke Confluence jika diperlukan
+
+**Jika user meminta publish ke Confluence:** Gunakan **REFUSAL PROTOCOL** dan provide manual publishing instructions.
+
+### Related Documentation:
+- **Product Docs Writer Skill**: `.github/skills/product-docs-writer/SKILL.md` — comprehensive workflow & templates
+- **Atlassian Ops Skill**: `.github/skills/atlassian-ops/SKILL.md` — Confluence search & operations
+- **Template References**: 
+  - `templates/product-overview-template.md`
+  - `templates/technical-documentation-template.md`
+  - `templates/api-documentation-template.md`
+  - `templates/release-notes-template.md`
 
 ## MCP Integration (READ-ONLY MODE)
 
